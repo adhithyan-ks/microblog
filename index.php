@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'includes/db.php'; // Database connection
 // include 'includes/functions.php'; // Helper functions
 
@@ -21,6 +22,7 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <?php include 'header.php'; ?>
     <h1>Latest Posts</h1>
     
     <?php if ($result->num_rows > 0): ?>
