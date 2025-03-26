@@ -48,36 +48,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Post</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="createpost.css">
+    <link rel="stylesheet" href="nav.css">
 </head>
 <body>
+    <?php include 'header.php'; ?>
 
-<?php include 'header.php'; ?>
+    <div class="create-post-container">
+        <h2>Create a New Post</h2>
 
-<h2>Create a New Post</h2>
+        <?php if (!empty($errors)): ?>
+            <div class="error">
+                <?php foreach ($errors as $error): ?>
+                    <p><?= htmlspecialchars($error) ?></p>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
 
-<?php if (!empty($errors)): ?>
-    <div class="error">
-        <?php foreach ($errors as $error): ?>
-            <p><?= htmlspecialchars($error) ?></p>
-        <?php endforeach; ?>
+        <form action="create_post.php" method="post">
+            <label for="category">Category:</label>
+            <select name="category" id="category" required>
+                <option value="">Select a category</option>
+                <?php foreach ($categories as $category): ?>
+                    <option value="<?= $category['id'] ?>"><?= htmlspecialchars($category['name']) ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <label for="content">Post Content:</label>
+            <textarea name="content" id="content" rows="4" required></textarea>
+
+            <button type="submit">Post</button>
+        </form>
     </div>
-<?php endif; ?>
-
-<form action="create_post.php" method="post">
-    <label for="category">Category:</label>
-    <select name="category" id="category" required>
-        <option value="">Select a category</option>
-        <?php foreach ($categories as $category): ?>
-            <option value="<?= $category['id'] ?>"><?= htmlspecialchars($category['name']) ?></option>
-        <?php endforeach; ?>
-    </select>
-
-    <label for="content">Post Content:</label>
-    <textarea name="content" id="content" rows="4" required></textarea>
-
-    <button type="submit">Post</button>
-</form>
-
 </body>
+
 </html>

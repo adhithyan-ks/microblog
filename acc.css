@@ -1,0 +1,51 @@
+/* Profile Page */
+.profile-container {
+    margin-left: 270px; /* Adjust for sidebar */
+    padding: 20px;
+    width: calc(100% - 270px);
+    background: #f4f4f4;
+    min-height: 100vh;
+}
+
+.profile-container h2 {
+    color: #333;
+}
+
+.profile-container p {
+    font-size: 16px;
+    color: #555;
+}
+
+.profile-container a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.profile-container a:hover {
+    text-decoration: underline;
+}
+
+/* User Posts Section */
+.user-posts {
+    margin-top: 20px;
+}
+
+.post {
+    background: white;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post p {
+    margin: 5px 0;
+}
+
+.post small {
+    color: #888;
+    font-size: 14px;
+}

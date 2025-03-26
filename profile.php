@@ -32,29 +32,34 @@ $posts = $post_stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="acc.css">
 </head>
 <body>
+    <?php include 'header.php'; ?>
 
-<?php include 'header.php'; ?>
+    <div class="profile-container">
+        <h2>Profile</h2>
+        <p><strong>Username:</strong> <?= htmlspecialchars($user['username']) ?></p>
+        <p><strong>Email:</strong> <?= htmlspecialchars($user['email']) ?></p>
+        <p><a href="logout.php">Logout</a></p>
 
-<h2>Profile</h2>
-<p><strong>Username:</strong> <?= htmlspecialchars($user['username']) ?></p>
-<p><strong>Email:</strong> <?= htmlspecialchars($user['email']) ?></p>
-
-<h3>Your Posts</h3>
-
-<?php if ($posts->num_rows > 0): ?>
-    <?php while ($row = $posts->fetch_assoc()): ?>
-        <div class="post">
-            <p><strong>Category:</strong> <?= htmlspecialchars($row['category_name']) ?></p>
-            <p><?= nl2br(htmlspecialchars($row['content'])) ?></p>
-            <small>Posted on: <?= date('F j, Y, g:i a', strtotime($row['created_at'])) ?></small>
+        <h3>Your Posts</h3>
+        <div class="user-posts">
+            <?php if ($posts->num_rows > 0): ?>
+                <?php while ($row = $posts->fetch_assoc()): ?>
+                    <div class="post">
+                        <p><strong>Category:</strong> <?= htmlspecialchars($row['category_name']) ?></p>
+                        <p><?= nl2br(htmlspecialchars($row['content'])) ?></p>
+                        <small>Posted on: <?= date('F j, Y, g:i a', strtotime($row['created_at'])) ?></small>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p>You haven't posted anything yet.</p>
+            <?php endif; ?>
         </div>
-    <?php endwhile; ?>
-<?php else: ?>
-    <p>You haven't posted anything yet.</p>
-<?php endif; ?>
-
+    </div>
 </body>
+
 </html>

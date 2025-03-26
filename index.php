@@ -19,13 +19,16 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Microblogging</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="nav.css">
 </head>
 <body>
+<body>
     <?php include 'header.php'; ?>
-    <h1>Latest Posts</h1>
-    
-    <?php if ($result->num_rows > 0): ?>
+    <div class="main-content">
+        <h1>Welcome to Microblog</h1>
+        <p>Here you can see posts and explore categories.</p>
+        <?php if ($result->num_rows > 0): ?>
         <?php while ($row = $result->fetch_assoc()): ?>
             <div class="post">
                 <p><strong><?= htmlspecialchars($row['username']) ?></strong> in <em><?= htmlspecialchars($row['category_name']) ?></em></p>
@@ -36,6 +39,8 @@ $result = $conn->query($sql);
     <?php else: ?>
         <p>No posts available.</p>
     <?php endif; ?>
+    </div>
+</body>
 
 </body>
 </html>

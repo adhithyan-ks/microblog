@@ -44,29 +44,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <h2>Login</h2>
+    <div class="login-container">
+        <h2>Login</h2>
 
-    <?php if (!empty($errors)): ?>
-        <div class="error">
-            <?php foreach ($errors as $error): ?>
-                <p><?= htmlspecialchars($error) ?></p>
-            <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
+        <?php if (!empty($errors)): ?>
+            <div class="error">
+                <?php foreach ($errors as $error): ?>
+                    <p><?= htmlspecialchars($error) ?></p>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
 
-    <form action="login.php" method="post">
-        <label>Username:</label>
-        <input type="text" name="username" required>
+        <form action="login.php" method="post">
+            <label>Username:</label>
+            <input type="text" name="username" required>
 
-        <label>Password:</label>
-        <input type="password" name="password" required>
+            <label>Password:</label>
+            <input type="password" name="password" required>
 
-        <button type="submit">Login</button>
-    </form>
+            <button type="submit">Login</button>
+        </form>
 
-    <p>Don't have an account? <a href="register.php">Register here</a></p>
+        <p>Don't have an account? <a href="register.php">Register here</a></p>
+    </div>
 </body>
+
 </html>
