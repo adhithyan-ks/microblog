@@ -28,7 +28,7 @@ h2 {
 .login-container button {
     width: 100%;
     padding: 10px;
-    background: #007bff;
+    background: #444444;
     color: white;
     border: none;
     border-radius: 5px;
@@ -37,7 +37,7 @@ h2 {
 }
 
 .login-container button:hover {
-    background: #0056b3;
+    background: #414141;
 }
 
 /* Error Messages */

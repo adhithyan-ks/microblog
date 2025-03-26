@@ -30,7 +30,7 @@
 .create-post-container button {
     width: 100%;
     padding: 10px;
-    background: #007bff;
+    background: #383838;
     color: white;
     border: none;
     border-radius: 5px;
@@ -39,7 +39,7 @@
 }
 
 .create-post-container button:hover {
-    background: #0056b3;
+    background: #4a4a4a;
 }
 
 /* Error Messages */
