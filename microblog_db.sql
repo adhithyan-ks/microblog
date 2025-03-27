@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2025 at 10:22 AM
+-- Generation Time: Mar 27, 2025 at 06:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -65,7 +65,9 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `category_id`, `content`, `created_at`) VALUES
-(1, 1, 3, 'Empuraan releases on 27th march!', '2025-03-26 04:40:29');
+(1, 1, 3, 'Empuraan releases on 27th march!', '2025-03-26 04:40:29'),
+(2, 2, 2, 'Siuuu', '2025-03-26 10:02:40'),
+(3, 2, 6, 'Health is well!', '2025-03-26 10:48:29');
 
 -- --------------------------------------------------------
 
@@ -130,7 +132,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
