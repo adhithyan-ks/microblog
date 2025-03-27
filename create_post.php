@@ -48,12 +48,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Post</title>
-    <link rel="stylesheet" href="createpost.css">
-    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2e5e758ab7.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <?php include 'header.php'; ?>
 
+    <!-- Top Navigation Bar -->
+    <div class="top-nav">
+        <a href="index.php"><i class="fas fa-arrow-left"></i> Back</a>
+    </div>
+
+    <!-- Main Content -->
     <div class="create-post-container">
         <h2>Create a New Post</h2>
 
@@ -77,9 +82,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="content">Post Content:</label>
             <textarea name="content" id="content" rows="4" required></textarea>
 
-            <button type="submit">Post</button>
+            <button type="submit"><i class="fas fa-paper-plane"></i> Post</button>
         </form>
     </div>
-</body>
 
+    <!-- Bottom Navigation Bar -->
+
+    <div class="bottom-nav">
+        <a href="index.php"><i class="fas fa-home"></i></a>
+        <a href="create_post.php" class="create-post active"><i class="fas fa-plus"></i></a>
+        <a href="profile.php"><i class="fas fa-user"></i></a>
+    </div>
+</body>
 </html>
