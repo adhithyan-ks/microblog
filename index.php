@@ -2,17 +2,17 @@
 session_start();
 include 'includes/db.php';
 
-// Fetch categories for the top navbar
+// Fetch categories
 $categories = $conn->query("SELECT id, name FROM categories ORDER BY name ASC");
 
 // Fetch latest posts
-$sql = "SELECT posts.id, posts.content, posts.created_at, 
-               users.username, categories.name AS category_name
+$sql = "SELECT posts.id, posts.content, posts.created_at, users.username, 
+               posts.category_id, categories.name AS category_name
         FROM posts
         JOIN users ON posts.user_id = users.id
         JOIN categories ON posts.category_id = categories.id
         ORDER BY posts.created_at DESC";
-$result = $conn->query($sql);
+$posts = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -20,42 +20,56 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Microblog</title>
-    <link rel="stylesheet" href="style.css">
+    <title>MicroBlog</title>
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/2e5e758ab7.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <!-- Top Navigation Bar -->
-    <div class="top-nav">
-        <a href="index.php" class="active">All</a>
-        <?php while ($cat = $categories->fetch_assoc()): ?>
-            <a href="category.php?id=<?= $cat['id'] ?>"><?= htmlspecialchars($cat['name']) ?></a>
-        <?php endwhile; ?>
-    </div>
+    <!-- Header -->
+    <header>
+        <h1>MicroBlog</h1>
+        <nav>
+            <a href="./" class="active">Home</a>
+            <a href="createpost.php">Create</a>
+            <a href="profile.php">Profile</a>
+        </nav>
+    </header>
 
     <!-- Main Content -->
-    <div class="main-content">
-        <?php if ($result->num_rows > 0): ?>
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="post">
-                    <p><strong><?= htmlspecialchars($row['username']) ?></strong> in <em><?= htmlspecialchars($row['category_name']) ?></em></p>
-                    <p><?= nl2br(htmlspecialchars($row['content'])) ?></p>
-                    <small><?= date('F j, Y, g:i a', strtotime($row['created_at'])) ?></small>
-                </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>No posts available.</p>
-        <?php endif; ?>
-    </div>
+    <main class="content-wrapper">
+        <!-- Left Side: Posts -->
+        <section class="recent-posts">
+            <h2>Recent Posts</h2>
+            <?php if ($posts->num_rows > 0): ?>
+                <?php while ($post = $posts->fetch_assoc()): ?>
+                    <div class="post">
+                        <p><strong><?= htmlspecialchars($post['username']) ?></strong></p>
+                        <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
+                        <a href="category.php?id=<?= $post['category_id'] ?>" class="post-category">#<?= htmlspecialchars($post['category_name']) ?></a>
+                        <small><?= date('F j, Y, g:i a', strtotime($post['created_at'])) ?></small>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p>No posts available.</p>
+            <?php endif; ?>
+        </section>
 
-    <!-- Bottom Navigation Bar -->
-    <div class="bottom-nav">
-        <a href="index.php"><i class="fas fa-home"></i></a>
-        <a href="create_post.php" class="create-post"><i class="fas fa-plus"></i></a>
-        <a href="profile.php"><i class="fas fa-user"></i></a>
-    </div>
-
-
+        <!-- Right Side: Categories -->
+        <aside class="categories">
+            <h2>Categories</h2>
+            <a href="./" class="category-item">All</a>
+            <?php if ($categories->num_rows > 0): ?>
+                <?php while ($cat = $categories->fetch_assoc()): ?>
+                    <a href="category.php?id=<?= $cat['id'] ?>" class="category-item"><?= htmlspecialchars($cat['name']) ?></a>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p>No categories available.</p>
+            <?php endif; ?>
+        </aside>
+    </main>
+    <footer>
+        <p>💙</p>
+    </footer>
 </body>
 </html>
