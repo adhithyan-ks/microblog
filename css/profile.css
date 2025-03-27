@@ -29,3 +29,28 @@
 .logout-btn:hover {
     background: #c9302c;
 }
+/* Delete Button */
+.delete-btn {
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-btn:hover {
+    background: #c9302c;
+}
+
+/* Success & Error Messages */
+.success-message {
+    color: green;
+    font-weight: bold;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}

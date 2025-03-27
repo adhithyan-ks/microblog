@@ -61,14 +61,27 @@ $categories = $conn->query("SELECT id, name FROM categories ORDER BY name ASC");
             <a href="logout.php" class="logout-btn">Logout</a>
 
             <h3>Your Posts</h3>
+            <?php if (isset($_GET['message'])): ?>
+                <p class="success-message"><?= htmlspecialchars($_GET['message']) ?></p>
+            <?php elseif (isset($_GET['error'])): ?>
+                <p class="error-message"><?= htmlspecialchars($_GET['error']) ?></p>
+            <?php endif; ?>
+
             <?php if ($posts->num_rows > 0): ?>
                 <?php while ($row = $posts->fetch_assoc()): ?>
                     <div class="post">
                         <p><strong><?= htmlspecialchars($user['username']) ?></strong> in <em><?= htmlspecialchars($row['category_name']) ?></em></p>
                         <p><?= nl2br(htmlspecialchars($row['content'])) ?></p>
                         <small><?= date('F j, Y, g:i a', strtotime($row['created_at'])) ?></small>
+                        
+                        <!-- Delete Button -->
+                        <form action="delete_post.php" method="post" class="delete-form" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                            <input type="hidden" name="post_id" value="<?= $row['id'] ?>">
+                            <button type="submit" class="delete-btn">Delete</button>
+                        </form>
                     </div>
                 <?php endwhile; ?>
+
             <?php else: ?>
                 <p>You haven't posted anything yet.</p>
             <?php endif; ?>

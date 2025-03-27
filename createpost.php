@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             <?php endif; ?>
 
-            <form action="create_post.php" method="post">
+            <form action="createpost.php" method="post">
                 <label for="category">Category:</label>
                 <select name="category" id="category" required>
                     <option value="">Select a category</option>
