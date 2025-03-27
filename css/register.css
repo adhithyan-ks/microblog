@@ -1,5 +1,5 @@
-/* Center the Register Form */
-.register-container {
+/* Authentication Pages */
+.auth-container {
     width: 100%;
     max-width: 400px;
     margin: 100px auto;
@@ -10,25 +10,36 @@
     text-align: center;
 }
 
-h2 {
-    margin-bottom: 20px;
-    color: #333;
+.auth-container h2 {
+    margin-bottom: 15px;
 }
 
-/* Input Fields */
-.register-container input {
+/* Form Styling */
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-container label {
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.auth-container input {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
 }
 
-/* Button */
-.register-container button {
+/* Submit Button */
+.auth-container button {
     width: 100%;
     padding: 10px;
-    background: #5e5e5e;
+    background: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -36,8 +47,8 @@ h2 {
     font-size: 16px;
 }
 
-.register-container button:hover {
-    background: #323232;
+.auth-container button:hover {
+    background: #0056b3;
 }
 
 /* Error Messages */
@@ -49,16 +60,17 @@ h2 {
     border-radius: 5px;
 }
 
-/* Login Link */
-.register-container p {
-    margin-top: 15px;
+/* Links */
+.auth-container p {
+    margin-top: 10px;
 }
 
-.register-container a {
+.auth-container a {
     color: #007bff;
     text-decoration: none;
+    font-weight: bold;
 }
 
-.register-container a:hover {
+.auth-container a:hover {
     text-decoration: underline;
 }

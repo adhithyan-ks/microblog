@@ -9,14 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $confirm_password = $_POST["confirm_password"];
 
-    // Basic validation
     if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
         $errors[] = "All fields are required.";
     } elseif ($password !== $confirm_password) {
         $errors[] = "Passwords do not match.";
     }
 
-    // Check if username or email already exists
     if (empty($errors)) {
         $checkUser = $conn->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
         $checkUser->bind_param("ss", $username, $email);
@@ -26,15 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($checkUser->num_rows > 0) {
             $errors[] = "Username or email already taken.";
         } else {
-            // Hash password
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-            // Insert user into database
             $stmt = $conn->prepare("INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)");
             $stmt->bind_param("sss", $username, $email, $hashed_password);
 
             if ($stmt->execute()) {
-                header("Location: login.php"); // Redirect to login
+                header("Location: login.php");
                 exit();
             } else {
                 $errors[] = "Registration failed. Try again.";
@@ -49,11 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="register.css">
+    <title>Register - MicroBlog</title>
+    <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
-    <div class="register-container">
+
+    <div class="auth-container">
         <h2>Register</h2>
 
         <?php if (!empty($errors)): ?>
@@ -82,6 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <p>Already have an account? <a href="login.php">Login here</a></p>
     </div>
-</body>
 
+</body>
 </html>
